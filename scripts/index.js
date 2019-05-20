@@ -9,3 +9,4 @@ convert.addEventListener("click", function(e) {
   result.innerHTML += PN.convertPeToEn(PN.convertEnToPe(number)) + "</br>";
   result.innerHTML += PN.convertEnToPe(PN.sliceNumber(number)) + "</br>";
 });
+console.log(PN.convert(1.5));

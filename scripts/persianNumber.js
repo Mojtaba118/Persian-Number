@@ -41,6 +41,11 @@ const PN = new (class {
     let negative = "";
     let decNumber = "";
     let decimal = "";
+    let percent = "";
+    if (this.isPercent(number)) {
+      number = number.replace("%", "");
+      percent = " درصد";
+    }
     number = this.getString(number);
     if (number == "") return "";
     this.sliceNumber(number);
@@ -68,19 +73,32 @@ const PN = new (class {
     }
     if (number.length === 1) {
       if ((number == "0" && decimal == "") || (number != "0" && decimal == ""))
-        return negative + this.oneDigit[number];
-      else if (number == "0" && decimal != "") return negative + decimal;
-      else return negative + this.oneDigit[number] + " و " + decimal;
+        return negative + this.oneDigit[number] + percent;
+      else if (number == "0" && decimal != "")
+        return negative + decimal + percent;
+      else
+        return negative + this.oneDigit[number] + " ممیز " + decimal + percent;
     }
     if (decimal == "") {
-      return negative + this.calculateDigits(this.numbers) + decimal;
+      return negative + this.calculateDigits(this.numbers) + decimal + percent;
     } else {
-      return negative + this.calculateDigits(this.numbers) + " . " + decimal;
+      return (
+        negative +
+        this.calculateDigits(this.numbers) +
+        " ممیز " +
+        decimal +
+        percent
+      );
     }
   };
 
   //split number 3 by 3 with a separator (123456789.3025=>123,456,789.3,025) Do Not Give It Persian Numbers
   sliceNumber = (number, separator = ",") => {
+    let percent = "";
+    if (this.isPercent(number)) {
+      number = number.replace("%", "");
+      percent = "%";
+    }
     number = this.getString(number);
     let neg = "";
     let counter = 0;
@@ -129,7 +147,7 @@ const PN = new (class {
       this.decimals = dRes.split(separator);
       dRes = "." + dRes;
     }
-    return neg + nRes + dRes;
+    return neg + nRes + dRes + percent;
   };
 
   //Processing on Digits of A Number
@@ -219,6 +237,19 @@ const PN = new (class {
         return true;
       }
     }
+    return false;
+  };
+
+  //Calculate if number:String has '%' as Percent
+  isPercent = string => {
+    if (typeof string == "undefined" || typeof string == "null") return "";
+    if (typeof string === "number") string = string.toString();
+    if (string.trim() === "") return "";
+    if (string == "") return false;
+    let index = string.indexOf("%");
+    let lIndex = string.lastIndexOf("%");
+    if (index != lIndex) return false;
+    if (index > 0) return true;
     return false;
   };
 
