@@ -19,6 +19,8 @@ Output: Converted Number To It's Word (string)
 Example:
 ```javascript
 PN.convert(123); // صد و بیست و سه
+PN.convert(-123.2); // منفی صد و بیست و سه ممیز دو دهم
+PN.convert("-123.26%") //منفی صد و بیست و سه ممیز بیست و شش صدم درصد
 ```
 
 #### `PN.sliceNumber(number,separator=",");`
