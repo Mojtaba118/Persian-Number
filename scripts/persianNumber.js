@@ -154,12 +154,13 @@ const PN = new (class {
   calculateDigits = arrNum => {
     let result = "";
     for (let i = 0; i < arrNum.length; i++) {
-      let number = parseInt(arrNum[i]);
+      let parsedNum = parseInt(arrNum[i]);
+      let number = parsedNum;
       let sadgan = Math.floor(number / 100) * 100;
       number = number % 100;
       let dahgan = Math.floor(number / 10) * 10;
       let yekan = number % 10;
-      result += i !== 0 && parseInt(arrNum[i]) !== 0 ? " و " : "";
+      result += i !== 0 && parsedNum ? " و " : "";
 
       result +=
         this.getPersian(sadgan, dahgan, yekan, i, arrNum) +
@@ -220,7 +221,9 @@ const PN = new (class {
 
   //getting The Type Of Each Number (Billion, Million,...)
   getType = (i, numbers) => {
-    if (parseInt(numbers[i]) === 0) return "";
+    let parsedNum = parseInt(numbers[i]);
+    if (isNaN(parsedNum)) return "";
+    if (!parsedNum) return "";
     let length = numbers.length - i;
     let index = this.types.length - length;
     return this.types[index];
