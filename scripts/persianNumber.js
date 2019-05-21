@@ -299,7 +299,6 @@ const PN = new (class {
   //Convert Persian Numbers To English Numbers
   convertPeToEn = number => {
     if (number == null || number == undefined) return "";
-    if (typeof number == "number") number = number.toString();
     let res = "";
     for (let i = 0; i < number.length; i++) {
       if (number[i] === "\u06F0") res += "\u0030";
