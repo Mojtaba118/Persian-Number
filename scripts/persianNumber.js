@@ -242,15 +242,11 @@ const PN = new (class {
 
   //Calculate if number:String has '%' as Percent
   isPercent = string => {
-    if (typeof string == "undefined" || typeof string == "null") return "";
-    if (typeof string === "number") string = string.toString();
-    if (string.trim() === "") return "";
-    if (string == "") return false;
+    if (typeof string !== "string") return false;
     let index = string.indexOf("%");
     let lIndex = string.lastIndexOf("%");
     if (index != lIndex) return false;
-    if (index > 0) return true;
-    return false;
+    return index > 0;
   };
 
   //is number:String:Number is a Valid Number? if type is Number turn it to String And Return it
