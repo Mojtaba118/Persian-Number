@@ -255,15 +255,11 @@ const PN = new (class {
 
   //is number:String:Number is a Valid Number? if type is Number turn it to String And Return it
   getString = number => {
-    if (
-      isNaN(number) ||
-      typeof number == "undefined" ||
-      typeof number == "null"
-    )
-      return "";
-    if (typeof number === "number") number = number.toString();
-    if (number.trim() === "") return "";
-    return number;
+    if (number === undefined) return "";
+    if (number === null) return "";
+    if (isNaN(number)) return "";
+    if (typeof number === "number") return number.toString();
+    return number.trim();
   };
 
   //Calculate if number:String has Decimal Point Or Not
