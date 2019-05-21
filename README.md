@@ -1,20 +1,20 @@
 # Persian-Number
 A Library that Makes You Able to Convert any Number to Persian Word.
-This Library Supports Decimal Point, Negative Numbers And Percent.
+This Library Supports Decimal Point, Negative Numbers and Percent.
 
 ### `persianNumber.js`
 
-Main Library File Is persianNumber.js. Copy It In Your Project The Add It Into Your HTML File. Enjoy :)
+Main Library File is persianNumber.js. Copy it in Your Project, then Add It into Your HTML File. Enjoy :)
 
 ### `Functions`
 
-To Use This Library You Can Call All Of It's Function With **PN.functionName();**
+To Use This Library You Can Call All of it's Functions using **PN.functionName();**
 
 #### `PN.convert(number);`
 
 Input: a number as int or float or string
 
-Output: Converted Number To It's Word (string)
+Output: Converted Number to it's Word (string)
 
 Example:
 ```javascript
@@ -38,7 +38,7 @@ PN.sliceNumber(12345); // 12,345
 
 Input: a number as int or float or string (English  Digits)
 
-Output: returns converted English Digits Into Persian Digits. (string)
+Output: Returns Converted English Digits into Persian Digits. (string)
 
 Example:
 ```javascript
@@ -49,7 +49,7 @@ PN.convertEnToPe(123); // ۱۲۳
 
 Input: a number as string (Persian  Digits)
 
-Output: returns converted Persian Digits Into English Digits. (string)
+Output: Returns Converted Persian Digits into English Digits. (string)
 
 Example:
 ```javascript
