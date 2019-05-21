@@ -84,7 +84,7 @@ const PN = new (class {
     }
     
     if (!decimal) {
-      return negative + this.calculateDigits(this.numbers) + decimal + percent;
+      return negative + this.calculateDigits(this.numbers) + percent;
     }
     
     return (
@@ -170,7 +170,7 @@ const PN = new (class {
         this.getType(i, arrNum);
     }
 
-    return result;
+    return result.trim();
   };
 
   //Main Process That Turn a Number Into a String(122=>100+20+2)
@@ -305,3 +305,5 @@ const PN = new (class {
     return res;
   };
 })();
+
+module.exports = exports = PN;
