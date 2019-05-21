@@ -2,9 +2,11 @@
   "name": "persian-number",
   "version": "1.0.0",
   "description": "A Library that Makes You Able to Convert any Number to Persian Word.",
-  "main": "./scripts/index.js",
+  "main": "./dist/persianNumber.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && mkdir dist && babel src -s -d dist",
+    "test": "jest ./tests/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/Mojtaba118/Persian-Number/issues"
   },
-  "homepage": "https://github.com/Mojtaba118/Persian-Number#readme"
+  "homepage": "https://github.com/Mojtaba118/Persian-Number#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "jest": "^24.8.0"
+  }
 }
