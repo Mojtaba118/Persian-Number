@@ -229,15 +229,10 @@ const PN = new (class {
   //Calculate if number:String is Negative Or Not
   isNegative = number => {
     number = this.getString(number);
-    if (number == "") return false;
-    if (number.length > 0) {
-      if (number[0] == "-") {
-        number = number.replace("-", "");
-        if (number.trim() == "" || number == "0") return false;
-        return true;
-      }
-    }
-    return false;
+    if (!number) return false;
+    if (number[0] != "-") return false;
+    number = number.replace("-", "");
+    return number != "0";
   };
 
   //Calculate if number:String has '%' as Percent
