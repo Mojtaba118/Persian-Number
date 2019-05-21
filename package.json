@@ -1,0 +1,19 @@
+{
+  "name": "persian-number",
+  "version": "1.0.0",
+  "description": "A Library that Makes You Able to Convert any Number to Persian Word.",
+  "main": "./scripts/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mojtaba118/Persian-Number.git"
+  },
+  "author": "Mojtaba118",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mojtaba118/Persian-Number/issues"
+  },
+  "homepage": "https://github.com/Mojtaba118/Persian-Number#readme"
+}
