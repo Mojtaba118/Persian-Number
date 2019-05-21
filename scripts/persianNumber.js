@@ -42,54 +42,58 @@ const PN = new (class {
     let decNumber = "";
     let decimal = "";
     let percent = "";
+    
     if (this.isPercent(number)) {
       number = number.replace("%", "");
       percent = " درصد";
     }
+    
     number = this.getString(number);
     if (number == "") return "";
     this.sliceNumber(number);
-    if (this.isNegative(number)) {
-      negative = "منفی ";
-    }
+    if (this.isNegative(number)) negative = "منفی ";
     number = number.replace("-", "");
+    
     if (this.isDecimal(number)) {
       let index = number.indexOf(".");
       let decNumberStr = "";
+      
       decNumber = number.substr(index + 1, number.length);
       number = number.substr(0, index);
       decNumberStr = parseInt(decNumber).toString();
-      if (decNumberStr.length === 1) {
-        if (decNumberStr != "0") {
-          decimal =
-            this.oneDigit[decNumberStr] +
-            " " +
-            this.decimalTypes[decNumber.length - 1];
-        }
+      
+      if (decNumberStr.length === 1 && decNumberStr != "0") {
+        decimal += this.oneDigit[decNumberStr] + " ";
+        decimal += this.decimalTypes[decNumber.length - 1];
       } else {
         decimal = this.calculateDigits(this.decimals);
         decimal += " " + this.decimalTypes[decNumber.length - 1];
       }
     }
+    
     if (number.length === 1) {
-      if ((number == "0" && decimal == "") || (number != "0" && decimal == ""))
+      if (!decimal) {
         return negative + this.oneDigit[number] + percent;
-      else if (number == "0" && decimal != "")
+      }
+        
+      if (number == "0") {
         return negative + decimal + percent;
-      else
-        return negative + this.oneDigit[number] + " ممیز " + decimal + percent;
+      }
+      
+      return negative + this.oneDigit[number] + " ممیز " + decimal + percent;
     }
-    if (decimal == "") {
+    
+    if (!decimal) {
       return negative + this.calculateDigits(this.numbers) + decimal + percent;
-    } else {
-      return (
-        negative +
-        this.calculateDigits(this.numbers) +
-        " ممیز " +
-        decimal +
-        percent
-      );
     }
+    
+    return (
+      negative +
+      this.calculateDigits(this.numbers) +
+      " ممیز " +
+      decimal +
+      percent
+    );
   };
 
   //split number 3 by 3 with a separator (123456789.3025=>123,456,789.3,025) Do Not Give It Persian Numbers
