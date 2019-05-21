@@ -263,7 +263,7 @@ const PN = new (class {
     let index = number.indexOf(".");
     let lIndex = number.lastIndexOf(".");
     if (index != lIndex) return false;
-    return index > -1;
+    return index > 0;
   };
   //Convert English Numbers To Persian Numbers
   convertEnToPe = number => {
