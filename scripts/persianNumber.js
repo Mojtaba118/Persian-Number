@@ -1,36 +1,36 @@
 const PN = new (class {
   oneDigit = ["صفر", "یک", "دو", "سه", "چهار", "پنج", "شش", "هفت", "هشت", "نه"];
-  twoDigits = [
-    [10, "ده"],
-    [11, "یازده"],
-    [12, "دوازده"],
-    [13, "سیزده"],
-    [14, "چهارده"],
-    [15, "پانزده"],
-    [16, "شانزده"],
-    [17, "هفده"],
-    [18, "هجده"],
-    [19, "نوزده"],
-    [20, "بیست"],
-    [30, "سی"],
-    [40, "چهل"],
-    [50, "پنجاه"],
-    [60, "شصت"],
-    [70, "هفتاد"],
-    [80, "هشتاد"],
-    [90, "نود"]
-  ];
-  threeDigits = [
-    [100, "صد"],
-    [200, "دویست"],
-    [300, "سیصد"],
-    [400, "چهارصد"],
-    [500, "پانصد"],
-    [600, "شش صد"],
-    [700, "هفت صد"],
-    [800, "هشت صد"],
-    [900, "نه صد"]
-  ];
+  twoDigits = {
+    10: "ده",
+    11: "یازده",
+    12: "دوازده",
+    13: "سیزده",
+    14: "چهارده",
+    15: "پانزده",
+    16: "شانزده",
+    17: "هفده",
+    18: "هجده",
+    19: "نوزده",
+    20: "بیست",
+    30: "سی",
+    40: "چهل",
+    50: "پنجاه",
+    60: "شصت",
+    70: "هفتاد",
+    80: "هشتاد",
+    90: "نود"
+  };
+  threeDigits = {
+    100: "صد",
+    200: "دویست",
+    300: "سیصد",
+    400: "چهارصد",
+    500: "پانصد",
+    600: "شش صد",
+    700: "هفت صد",
+    800: "هشت صد",
+    900: "نه صد"
+  };
 
   types = ["تلیارد", "میلیارد", "میلیون", "هزار", ""];
   decimalTypes = ["دهم", "صدم", "هزارم", "ده هزارم"];
@@ -175,47 +175,45 @@ const PN = new (class {
   getPersian = (sadgan, dahgan, yekan, index, numbers) => {
     let flag = false;
     let result = "";
+    let dahganPlusYekan = dahgan + yekan;
 
-    for (let i = 0; i < this.threeDigits.length; i++) {
-      if (sadgan === this.threeDigits[i][0]) {
-        if (yekan > 0 || dahgan > 0) result += this.threeDigits[i][1] + " و ";
-        else result += this.threeDigits[i][1];
-        break;
-      }
+    if (this.threeDigits[sadgan]) {
+      result += yekan > 0 || dahgan > 0
+        ? this.threeDigits[sadgan] + " و "
+        : this.threeDigits[sadgan];
     }
 
-    for (let i = 0; i < this.twoDigits.length; i++) {
-      if (dahgan + yekan == this.twoDigits[i][0]) {
-        result += this.twoDigits[i][1] + " ";
-        flag = true;
-        break;
-      }
+    if (this.twoDigits[dahganPlusYekan]) {
+      result += this.twoDigits[dahganPlusYekan] + " ";
+      return result;
     }
-    if (!flag) {
-      for (let i = 0; i < this.twoDigits.length; i++) {
-        if (dahgan === this.twoDigits[i][0]) {
-          result += this.twoDigits[i][1] + " و ";
-          break;
-        }
-      }
-      if (
-        numbers.length === 2 &&
-        index === 0 &&
-        yekan === 1 &&
-        dahgan === 0 &&
-        sadgan === 0
-      ) {
-        result += "";
-      } else if (
-        numbers.length > 2 &&
-        index === numbers.length - 2 &&
-        yekan === 1 &&
-        dahgan === 0 &&
-        sadgan === 0
-      ) {
-        result += "";
-      } else if (yekan > 0) result += this.oneDigit[yekan] + " ";
+    
+    if (this.twoDigits[dahgan]) {
+      result += this.twoDigits[dahgan] + " و ";
     }
+    
+    if (
+      numbers.length === 2 &&
+      index === 0 &&
+      yekan === 1 &&
+      dahgan === 0 &&
+      sadgan === 0
+    ) {
+      return result;
+    }
+    
+    if (
+      numbers.length > 2 &&
+      index === numbers.length - 2 &&
+      yekan === 1 &&
+      dahgan === 0 &&
+      sadgan === 0
+    ) {
+      return result;
+    }
+    
+    if (yekan > 0) result += this.oneDigit[yekan] + " ";
+    
     return result;
   };
 
