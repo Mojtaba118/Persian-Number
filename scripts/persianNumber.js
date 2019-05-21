@@ -265,8 +265,7 @@ const PN = new (class {
     let index = number.indexOf(".");
     let lIndex = number.lastIndexOf(".");
     if (index != lIndex) return false;
-    if (index >= 0) return true;
-    return false;
+    return index > -1;
   };
   //Convert English Numbers To Persian Numbers
   convertEnToPe = number => {
