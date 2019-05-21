@@ -95,59 +95,57 @@ const PN = new (class {
   //split number 3 by 3 with a separator (123456789.3025=>123,456,789.3,025) Do Not Give It Persian Numbers
   sliceNumber = (number, separator = ",") => {
     let percent = "";
+    let neg = "";
+    let dNum = "";
+    let n = "";
+    let d = "";
+    
     if (this.isPercent(number)) {
       number = number.replace("%", "");
       percent = "%";
     }
+    
     number = this.getString(number);
-    let neg = "";
-    let counter = 0;
-    let dNum = "";
-    let n = "";
-    let d = "";
+    
     if (number == "") return "";
-    if (this.isNegative(number)) {
-      neg = "-";
-    }
+    if (this.isNegative(number)) neg = "-";
+    
     number = number.replace("-", "");
+    
     if (this.isDecimal(number)) {
       let index = number.indexOf(".");
       dNum = number.substr(index + 1, number.length);
       number = number.substr(0, index);
     }
-    for (let i = number.length - 1; i >= 0; i--) {
+    
+    n = this.putSeparator(number, 3, separator);
+    this.numbers = n.split(separator);
+    
+    if (!dNum) return neg + n + percent;
+    
+    d = this.putSeparator(dNum, 3, separator);
+    this.decimals = d.split(separator);
+    
+    return neg + n + "." + d + percent;
+  };
+  
+  //Puts a separator between the chunks of the given numString.
+  putSeparator = (numString, chunkSize, separator = ",") => {
+    if (typeof numString !== "string") return "";
+    if (numString.length < 4) return numString;
+    
+    let result = "";
+    for (let i = numString.length - 1, counter = 0; i >= 0; i--) {
       if (counter == 3) {
-        n += separator;
+        result += separator;
         counter = 0;
       }
-      n += number[i];
+      result += numString[i];
       counter++;
     }
-
-    let nRes = "";
-    for (let i = n.length - 1; i >= 0; i--) {
-      nRes += n[i];
-    }
-    this.numbers = nRes.split(separator);
-
-    let dRes = "";
-    if (dNum != "") {
-      counter = 0;
-      for (let i = dNum.length - 1; i >= 0; i--) {
-        if (counter == 3) {
-          d += separator;
-          counter = 0;
-        }
-        d += dNum[i];
-        counter++;
-      }
-      for (let i = d.length - 1; i >= 0; i--) {
-        dRes += d[i];
-      }
-      this.decimals = dRes.split(separator);
-      dRes = "." + dRes;
-    }
-    return neg + nRes + dRes + percent;
+    
+    result = result.split("").reverse().join("");
+    return result;
   };
 
   //Processing on Digits of A Number
