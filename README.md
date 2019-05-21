@@ -1,5 +1,5 @@
 # Persian-Number
-A Library That With It You Can Turn Any Number Into Word (In Persian). 
+A Library that Makes You Able to Convert any Number to Persian Word.
 This Library Supports Decimal Point, Negative Numbers And Percent.
 
 ### `persianNumber.js`
