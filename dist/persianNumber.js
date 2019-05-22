@@ -250,23 +250,109 @@ var PN = new (_temp = function _temp() {
   });
 
   _defineProperty(this, "convertEnToPe", function (number) {
-    if (number == null || number == undefined) return "";
+    if (number === null || number === undefined) return "";
     if (typeof number == "number") number = number.toString();
     var res = "";
 
     for (var i = 0; i < number.length; i++) {
-      if (number[i] === "0") res += "\u06F0";else if (number[i] === "1") res += "\u06F1";else if (number[i] === "2") res += "\u06F2";else if (number[i] === "3") res += "\u06F3";else if (number[i] === "4") res += "\u06F4";else if (number[i] === "5") res += "\u06F5";else if (number[i] === "6") res += "\u06F6";else if (number[i] === "7") res += "\u06F7";else if (number[i] === "8") res += "\u06F8";else if (number[i] === "9") res += "\u06F9";else res += number[i];
+      switch (number[i]) {
+        case "0":
+          res += "\u06F0";
+          break;
+
+        case "1":
+          res += "\u06F1";
+          break;
+
+        case "2":
+          res += "\u06F2";
+          break;
+
+        case "3":
+          res += "\u06F3";
+          break;
+
+        case "4":
+          res += "\u06F4";
+          break;
+
+        case "5":
+          res += "\u06F5";
+          break;
+
+        case "6":
+          res += "\u06F6";
+          break;
+
+        case "7":
+          res += "\u06F7";
+          break;
+
+        case "8":
+          res += "\u06F8";
+          break;
+
+        case "9":
+          res += "\u06F9";
+          break;
+
+        default:
+          res += number[i];
+      }
     }
 
     return res;
   });
 
   _defineProperty(this, "convertPeToEn", function (number) {
-    if (number == null || number == undefined) return "";
+    if (number === null || number === undefined) return "";
     var res = "";
 
     for (var i = 0; i < number.length; i++) {
-      if (number[i] === "\u06F0") res += "0";else if (number[i] === "\u06F1") res += "1";else if (number[i] === "\u06F2") res += "2";else if (number[i] === "\u06F3") res += "3";else if (number[i] === "\u06F4") res += "4";else if (number[i] === "\u06F5") res += "5";else if (number[i] === "\u06F6") res += "6";else if (number[i] === "\u06F7") res += "7";else if (number[i] === "\u06F8") res += "8";else if (number[i] === "\u06F9") res += "9";else res += number[i];
+      switch (number[i]) {
+        case "\u06F0":
+          res += "0";
+          break;
+
+        case "\u06F1":
+          res += "1";
+          break;
+
+        case "\u06F2":
+          res += "2";
+          break;
+
+        case "\u06F3":
+          res += "3";
+          break;
+
+        case "\u06F4":
+          res += "4";
+          break;
+
+        case "\u06F5":
+          res += "5";
+          break;
+
+        case "\u06F6":
+          res += "6";
+          break;
+
+        case "\u06F7":
+          res += "7";
+          break;
+
+        case "\u06F8":
+          res += "8";
+          break;
+
+        case "\u06F9":
+          res += "9";
+          break;
+
+        default:
+          res += number[i];
+      }
     }
 
     return res;
