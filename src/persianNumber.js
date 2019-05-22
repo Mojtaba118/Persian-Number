@@ -270,40 +270,44 @@ const PN = new (class {
   };
   //Convert English Numbers To Persian Numbers
   convertEnToPe = number => {
-    if (number == null || number == undefined) return "";
+    if (number === null || number === undefined) return "";
     if (typeof number == "number") number = number.toString();
     let res = "";
     for (let i = 0; i < number.length; i++) {
-      if (number[i] === "\u0030") res += "\u06F0";
-      else if (number[i] === "\u0031") res += "\u06F1";
-      else if (number[i] === "\u0032") res += "\u06F2";
-      else if (number[i] === "\u0033") res += "\u06F3";
-      else if (number[i] === "\u0034") res += "\u06F4";
-      else if (number[i] === "\u0035") res += "\u06F5";
-      else if (number[i] === "\u0036") res += "\u06F6";
-      else if (number[i] === "\u0037") res += "\u06F7";
-      else if (number[i] === "\u0038") res += "\u06F8";
-      else if (number[i] === "\u0039") res += "\u06F9";
-      else res += number[i];
+      switch (number[i]) {
+        case "\u0030": res += "\u06F0"; break;
+        case "\u0031": res += "\u06F1"; break;
+        case "\u0032": res += "\u06F2"; break;
+        case "\u0033": res += "\u06F3"; break;
+        case "\u0034": res += "\u06F4"; break;
+        case "\u0035": res += "\u06F5"; break;
+        case "\u0036": res += "\u06F6"; break;
+        case "\u0037": res += "\u06F7"; break;
+        case "\u0038": res += "\u06F8"; break;
+        case "\u0039": res += "\u06F9"; break;
+        default: res += number[i];
+      }
     }
     return res;
   };
   //Convert Persian Numbers To English Numbers
   convertPeToEn = number => {
-    if (number == null || number == undefined) return "";
+    if (number === null || number === undefined) return "";
     let res = "";
     for (let i = 0; i < number.length; i++) {
-      if (number[i] === "\u06F0") res += "\u0030";
-      else if (number[i] === "\u06F1") res += "\u0031";
-      else if (number[i] === "\u06F2") res += "\u0032";
-      else if (number[i] === "\u06F3") res += "\u0033";
-      else if (number[i] === "\u06F4") res += "\u0034";
-      else if (number[i] === "\u06F5") res += "\u0035";
-      else if (number[i] === "\u06F6") res += "\u0036";
-      else if (number[i] === "\u06F7") res += "\u0037";
-      else if (number[i] === "\u06F8") res += "\u0038";
-      else if (number[i] === "\u06F9") res += "\u0039";
-      else res += number[i];
+      switch (number[i]) {
+        case "\u06F0": res += "\u0030"; break;
+        case "\u06F1": res += "\u0031"; break;
+        case "\u06F2": res += "\u0032"; break;
+        case "\u06F3": res += "\u0033"; break;
+        case "\u06F4": res += "\u0034"; break;
+        case "\u06F5": res += "\u0035"; break;
+        case "\u06F6": res += "\u0036"; break;
+        case "\u06F7": res += "\u0037"; break;
+        case "\u06F8": res += "\u0038"; break;
+        case "\u06F9": res += "\u0039"; break;
+        default: res += number[i];
+      }
     }
     return res;
   };
