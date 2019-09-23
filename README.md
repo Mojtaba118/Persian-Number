@@ -10,6 +10,8 @@ Main Library File is `./dist/persianNumber.js`. Copy it in Your Project, then Ad
 ### `With npm`
 
 use `npm i persian-number`
+or
+use `yarn add persian-number`
 then use:
 
 ```javascript
