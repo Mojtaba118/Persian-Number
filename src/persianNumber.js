@@ -42,26 +42,26 @@ const PN = new (class {
     let decNumber = "";
     let decimal = "";
     let percent = "";
-    
+
     if (this.isPercent(number)) {
       number = number.replace("%", "");
       percent = " درصد";
     }
-    
+
     number = this.getString(number);
     if (number == "") return "";
     this.sliceNumber(number);
     if (this.isNegative(number)) negative = "منفی ";
     number = number.replace("-", "");
-    
+
     if (this.isDecimal(number)) {
       let index = number.indexOf(".");
       let decNumberStr = "";
-      
+
       decNumber = number.substr(index + 1, number.length);
       number = number.substr(0, index);
       decNumberStr = parseInt(decNumber).toString();
-      
+
       if (decNumberStr.length === 1 && decNumberStr != "0") {
         decimal += this.oneDigit[decNumberStr] + " ";
         decimal += this.decimalTypes[decNumber.length - 1];
@@ -70,23 +70,23 @@ const PN = new (class {
         decimal += " " + this.decimalTypes[decNumber.length - 1];
       }
     }
-    
+
     if (number.length === 1) {
       if (!decimal) {
         return negative + this.oneDigit[number] + percent;
       }
-        
+
       if (number == "0") {
         return negative + decimal + percent;
       }
-      
+
       return negative + this.oneDigit[number] + " ممیز " + decimal + percent;
     }
-    
+
     if (!decimal) {
       return negative + this.calculateDigits(this.numbers) + percent;
     }
-    
+
     return (
       negative +
       this.calculateDigits(this.numbers) +
@@ -103,41 +103,41 @@ const PN = new (class {
     let dNum = "";
     let n = "";
     let d = "";
-    
+
     if (this.isPercent(number)) {
       number = number.replace("%", "");
       percent = "%";
     }
-    
+
     number = this.getString(number);
-    
+
     if (number == "") return "";
     if (this.isNegative(number)) neg = "-";
-    
+
     number = number.replace("-", "");
-    
+
     if (this.isDecimal(number)) {
       let index = number.indexOf(".");
       dNum = number.substr(index + 1, number.length);
       number = number.substr(0, index);
     }
-    
+
     n = this.putSeparator(number, 3, separator);
     this.numbers = n.split(separator);
-    
+
     if (!dNum) return neg + n + percent;
-    
+
     d = this.putSeparator(dNum, 3, separator);
     this.decimals = d.split(separator);
-    
+
     return neg + n + "." + d + percent;
   };
-  
+
   //Puts a separator between the chunks of the given numString.
   putSeparator = (numString, chunkSize, separator = ",") => {
     if (typeof numString !== "string") return "";
     if (numString.length < 4) return numString;
-    
+
     let result = "";
     for (let i = numString.length - 1, counter = 0; i >= 0; i--) {
       if (counter == 3) {
@@ -147,8 +147,11 @@ const PN = new (class {
       result += numString[i];
       counter++;
     }
-    
-    result = result.split("").reverse().join("");
+
+    result = result
+      .split("")
+      .reverse()
+      .join("");
     return result;
   };
 
@@ -180,20 +183,21 @@ const PN = new (class {
     let dahganPlusYekan = dahgan + yekan;
 
     if (this.threeDigits[sadgan]) {
-      result += yekan > 0 || dahgan > 0
-        ? this.threeDigits[sadgan] + " و "
-        : this.threeDigits[sadgan];
+      result +=
+        yekan > 0 || dahgan > 0
+          ? this.threeDigits[sadgan] + " و "
+          : this.threeDigits[sadgan];
     }
 
     if (this.twoDigits[dahganPlusYekan]) {
       result += this.twoDigits[dahganPlusYekan] + " ";
       return result;
     }
-    
+
     if (this.twoDigits[dahgan]) {
       result += this.twoDigits[dahgan] + " و ";
     }
-    
+
     if (
       numbers.length === 2 &&
       index === 0 &&
@@ -203,7 +207,7 @@ const PN = new (class {
     ) {
       return result;
     }
-    
+
     if (
       numbers.length > 2 &&
       index === numbers.length - 2 &&
@@ -213,9 +217,9 @@ const PN = new (class {
     ) {
       return result;
     }
-    
+
     if (yekan > 0) result += this.oneDigit[yekan] + " ";
-    
+
     return result;
   };
 
