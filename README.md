@@ -3,10 +3,6 @@
 A Library that Makes You Able to Convert any Number to Persian Word.
 This Library Supports Decimal Point, Negative Numbers and Percent.
 
-### `persianNumber.js`
-
-Main Library File is `./dist/persianNumber.js`. Copy it in Your Project, then Add It into Your HTML File. Enjoy :)
-
 ### `With npm`
 
 use `npm i persian-number` or `yarn add persian-number`

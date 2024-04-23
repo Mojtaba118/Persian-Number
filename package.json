@@ -1,29 +1,33 @@
 {
-  "name": "persian-number",
-  "version": "1.5.1",
-  "description": "A Library that Makes You Able to Convert any Number to Persian Word.",
-  "main": "./dist/persianNumber.min.js",
-  "scripts": {
-    "clean": "rm -rf dist",
-    "build": "npm run clean && mkdir dist && babel src -s --out-file ./dist/persianNumber.min.js",
-    "test": "mocha"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Mojtaba118/Persian-Number.git"
-  },
-  "author": "Mojtaba118",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Mojtaba118/Persian-Number/issues"
-  },
-  "homepage": "https://github.com/Mojtaba118/Persian-Number#readme",
-  "keywords": ["persian","numbers","number-to-words"],
-  "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.6.2",
-    "babel-preset-minify": "^0.5.1",
-    "mocha": "^6.2.0"
-  }
+    "name": "persian-number",
+    "version": "1.6.0",
+    "description": "A Library that Makes You Able to Convert any Number to Persian Word.",
+    "main": "./dist/persianNumber.min.js",
+    "scripts": {
+        "clean": "rm -rf dist",
+        "build": "babel src -s --out-file ./dist/persianNumber.min.js",
+        "test": "mocha"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Mojtaba118/Persian-Number.git"
+    },
+    "author": "Mojtaba118",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Mojtaba118/Persian-Number/issues"
+    },
+    "homepage": "https://github.com/Mojtaba118/Persian-Number#readme",
+    "keywords": [
+        "persian",
+        "numbers",
+        "number-to-words"
+    ],
+    "devDependencies": {
+        "@babel/cli": "^7.24.1",
+        "@babel/core": "^7.24.4",
+        "@babel/preset-env": "^7.24.4",
+        "babel-preset-minify": "^0.5.2",
+        "mocha": "^10.4.0"
+    }
 }
